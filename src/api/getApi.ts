@@ -1,27 +1,22 @@
 import axios from 'axios'
-import {RequestConfig} from "./RequestConfig";
+import {ApiConfig} from "../AppConfiguration/ApiConfig";
+import {getAbsolutePath} from "./UrlFormatter";
 
 
-export const getApi = async (url: string, data: any, queryParameters: any): Promise<any> =>{
+export const getApi = async (relevantUrl: string, data: any, page: number): Promise<any> =>{
 
-    let getConfig = RequestConfig;
+    let getConfig = ApiConfig;
     getConfig.method = 'get';
-
-    let urlString: string = getConfig.baseUrl + '/' + url+ '/' +data;
-
-    if(queryParameters)
-    {
-        urlString += '/?page' + queryParameters;
-    }
 
     return await axios({
         ...getConfig,
-        url: urlString,
+        url: getAbsolutePath(relevantUrl, data, page),
     }).then ( (response) => {
         console.log(response)
         return {
             status: response.status,
-            data: response.data
+            data: response.data,
+            requestUrl: response.config.url
         }
     }).catch((error) =>{
         console.log(error)

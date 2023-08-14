@@ -1,10 +1,8 @@
 import React from 'react';
-import { Person } from './Person'
+import { Planet } from './Planet'
 import {IList, IListData} from "../CommonModels/IList";
-import { Link } from "react-router-dom";
-import {getRelativePath} from "../api/UrlFormatter";
 
-export class PersonList implements IList
+export class PlanetList implements IList
 {
     List({data}: IListData): any {
 
@@ -12,8 +10,8 @@ export class PersonList implements IList
 //            return <h1>Loading</h1>
 //        }
 
-        let persons =  data as Person[];
-        if (persons === undefined || persons.length === 0) {
+        let planets =  data as Planet[];
+        if (planets === undefined || planets.length === 0) {
             return <h1>Loading</h1>
         }
 
@@ -21,10 +19,9 @@ export class PersonList implements IList
             <div>
                 <ul>
                     {
-                        persons.map((x, i) =>
-
+                        planets.map((x, i) =>
                             <li key={i}>
-                                <Link to={getRelativePath(x.url)}>{x.name}</Link>
+                                {x.name}
                             </li>
                         )
                     }
