@@ -1,10 +1,17 @@
 export class Person
 {
     name: string='';
-    url: string='';
-
-    constructor(name: string, url: string) {
-        this.name = name;
-        this.url = url;
-    }
+    height: string ='';
+    mass:string = '';
+    hair_color: string ='';
+    skin_color: string = '';
+    eye_color: string = '';
+    birth_year: string = '';
+    url: string = '';
+    films:string[] = [];
+    vehicles:string[] = [];
+    species:string[] = [];
+    starships:string[] = [];
+    created: string = '';
+    edited: string = '';
 }

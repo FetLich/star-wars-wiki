@@ -1,4 +1,4 @@
-import {IDetails, IDetailsData} from "../CommonModels/IDetails";
+import {IDetails, IDetailsData} from "../Common/IDetails";
 import {Planet} from "./Planet";
 import React from "react";
 

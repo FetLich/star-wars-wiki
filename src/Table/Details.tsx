@@ -1,9 +1,11 @@
 import {useLoaderData} from "react-router-dom";
 import React from 'react';
-import {IResponse} from "../CommonModels/IResponse";
+import {IResponse} from "../Common/IResponse";
 import {FILTERS} from "../AppConfiguration/Filters";
 export function Details()
 {
+
+
     const data = useLoaderData() as IResponse;
 
 

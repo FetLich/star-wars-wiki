@@ -2,8 +2,8 @@ import {PersonList} from "../People/List";
 import {PlanetList} from "../Planets/List";
 import {PersonDetails} from "../People/Details";
 import {PlanetDetails} from "../Planets/Details";
-import {IList} from "../CommonModels/IList";
-import {IDetails} from "../CommonModels/IDetails";
+import {IList} from "../Common/IList";
+import {IDetails} from "../Common/IDetails";
 
 export class Filter
 {
@@ -29,6 +29,21 @@ export const FILTERS =[
     }),
     new Filter({
         filterName: "planets",
+        listImplementation: new PlanetList(),
+        detailsImplementation: new PlanetDetails()
+    }),
+    new Filter({
+        filterName: "vehicles",
+        listImplementation: new PlanetList(),
+        detailsImplementation: new PlanetDetails()
+    }),
+    new Filter({
+        filterName: "films",
+        listImplementation: new PlanetList(),
+        detailsImplementation: new PlanetDetails()
+    }),
+    new Filter({
+        filterName: "species",
         listImplementation: new PlanetList(),
         detailsImplementation: new PlanetDetails()
     })

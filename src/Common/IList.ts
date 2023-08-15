@@ -3,5 +3,5 @@ export interface IListData {
 }
 
 export interface IList {
-    List(data: IListData): any;
+    render(data: IListData): any;
 }

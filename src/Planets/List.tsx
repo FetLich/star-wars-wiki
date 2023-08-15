@@ -1,10 +1,10 @@
 import React from 'react';
 import { Planet } from './Planet'
-import {IList, IListData} from "../CommonModels/IList";
+import {IList, IListData} from "../Common/IList";
 
 export class PlanetList implements IList
 {
-    List({data}: IListData): any {
+    render({data}: IListData): any {
 
 //        if (data === undefined) {
 //            return <h1>Loading</h1>

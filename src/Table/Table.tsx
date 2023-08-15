@@ -1,8 +1,12 @@
 import React from 'react';
 import {getApi} from "../api/getApi";
-import {Button, ButtonGroup} from "../CommonComponents/Button";
-import {Filter, FILTERS} from "../AppConfiguration/Filters";
-import Pagination from "../CommonComponents/Pagingation";
+import {ButtonToolbar} from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import {FILTERS} from "../AppConfiguration/Filters";
+import Pagination from "../Components/Pagingation";
+import Spinner from 'react-bootstrap/Spinner';
+
+
 
 
 interface TableData {
@@ -11,56 +15,53 @@ interface TableData {
 }
 
 function Table() {
-    let contextFilter: Filter = FILTERS[0];
     let contextPage = 1;
+
 
     const [data, setData] = React.useState<TableData>() // set state to hold the result
     const[page, setPage] = React.useState(1)
+    const[contextFilter, setFilter] = React.useState(FILTERS[0]);
+    const [spinner, setSpinner] = React.useState(true);
+    let contextFilterName = contextFilter.filterName;
     //function below triggers the helper function
-    const getData = () => getApi(contextFilter.filterName, "", contextPage).then(
+    const getData = () => getApi(contextFilterName, "", contextPage).then(
         (res) => {
             if(res.status === 200){
                 setData(res.data as TableData);
-                console.log("on sucess");
-                console.log(data);
+                setSpinner(false);
             }else{
                 console.log(res)
             }
         }
     )
-    //this runs the getData trigger function as useEffect
+
     React.useEffect(()=>{
         getData()
     }, [])
 
-    console.log("before return");
-    console.log(data);
-
-    if(data === undefined)
+    if(spinner || data === undefined)
     return (
-     //  <table.List data = {data}></table.List>
-        <h1>work in progress</h1>
+             <div className="grid text-center">
+                <div>
+                    <Spinner animation="border" size="sm" />
+                    <Spinner animation="border" />
+                    <Spinner animation="grow" size="sm" />
+                    <Spinner animation="grow" />
+                </div>
+            </div>
     );
 else {
         return (
             <div>
-                <ButtonGroup>
+                <ButtonToolbar className="mb-3">
                     {FILTERS.map(filter => (
-                        <Button
-                            key={filter.filterName}
-                            onClick={() =>{ contextFilter = filter; getData(); }}
-                        >
-                            {filter.filterName}
-                        </Button>
-                    ))}
-                </ButtonGroup>
-                <contextFilter.listImplementation.List data = {data.results}></contextFilter.listImplementation.List>
-                <Pagination page={page} totalPages={Math.ceil(data.count/10)} handlePagination={(newPage)=>{contextPage = newPage; setPage(newPage); getData(); }}/>
+                            <Button className="me-3" onClick={() =>{ setSpinner(true); contextFilterName=filter.filterName; getData(); setFilter(filter); }}>{filter.filterName}</Button>
+                        ))}
+                </ButtonToolbar>
+                <contextFilter.listImplementation.render data = {data.results}></contextFilter.listImplementation.render>
+                <Pagination page={page} totalPages={Math.ceil(data.count/10)} handlePagination={(newPage)=>{setSpinner(true); contextPage = newPage; setPage(newPage); getData(); }}/>
             </div>
-
         );
     }
 }
-
-//persons = {data as Data[]}
 export default Table;
