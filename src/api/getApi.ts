@@ -3,16 +3,15 @@ import {ApiConfig} from "../AppConfiguration/ApiConfig";
 import {getAbsolutePath} from "./UrlFormatter";
 
 
-export const getApi = async (relevantUrl: string, data: any, page: number): Promise<any> =>{
+export const getApi = async (url: string): Promise<any> =>{
 
     let getConfig = ApiConfig;
     getConfig.method = 'get';
 
     return await axios({
         ...getConfig,
-        url: getAbsolutePath(relevantUrl, data, page),
+        url: url,
     }).then ( (response) => {
-        console.log(response)
         return {
             status: response.status,
             data: response.data,

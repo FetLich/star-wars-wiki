@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {getApi} from "./api/getApi";
+import 'bootstrap/dist/css/bootstrap.css';
+import {makeRequest} from "./clients/request";
+import App from './App';
 import {Details} from "./Table/Details";
 
 
@@ -18,11 +18,8 @@ const router = createBrowserRouter([
         path: "details/:data/:id",
         element: <Details/>,
         loader: async ({params}) => {
-            console.log("team loader");
-            console.log(params.data);
-            console.log(params.id);
             var data = params.data + '/' +params.id;
-            return getApi("", data, 0)
+            return makeRequest("", data, 0, true)
 
         }
     }

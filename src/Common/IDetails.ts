@@ -1,5 +1,7 @@
+import {IRedirectable} from "./IRedirectable";
+
 export interface IDetailsData {
-    data: any;
+    data: IRedirectable;
 }
 
 export interface IDetails {

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Planet } from './Planet'
 import {IList, IListData} from "../Common/IList";
+import Table from "react-bootstrap/Table";
+import {redirect} from "../Table/Table";
 
 export class PlanetList implements IList
 {
@@ -15,18 +17,39 @@ export class PlanetList implements IList
             return <h1>Loading</h1>
         }
 
-        return (
-            <div>
-                <ul>
+
+            return (
+                <Table striped bordered hover>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Rotation period</th>
+                        <th>Orbital period</th>
+                        <th>Diameter</th>
+                        <th>Climate</th>
+                        <th>Gravity</th>
+                        <th>Surface water</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {
                         planets.map((x, i) =>
-                            <li key={i}>
-                                {x.name}
-                            </li>
-                        )
-                    }
-                </ul>
-            </div>
-        );
-    }
+
+                            <tr key={i} onClick={() => {
+                                redirect(x.url)
+                            }}>
+                                <td>{x.name}</td>
+                                <td>{x.rotation_period}</td>
+                                <td>{x.orbital_period}</td>
+                                <td>{x.diameter}</td>
+                                <td>{x.climate}</td>
+                                <td>{x.gravity}</td>
+                                <td>{x.surface_water}</td>
+                            </tr>
+                        )}
+
+                    </tbody>
+                </Table>
+            );
+        }
 }

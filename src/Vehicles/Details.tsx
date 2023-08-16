@@ -1,5 +1,5 @@
 import {IDetails, IDetailsData} from "../Common/IDetails";
-import {Planet} from "./Planet";
+import {Vehicle} from "./Vehicle";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import {Col, Row, Stack} from "react-bootstrap";
@@ -8,28 +8,33 @@ import {getRelativePath} from "../api/UrlFormatter";
 import {Header} from "../Components/HeaderRow";
 import {MainInfo} from "../Components/MainInfo";
 
-export class PlanetDetails implements IDetails {
-    render ({data}: IDetailsData): any {
-        let planet =  data as Planet;
+export class VehicleDetails implements IDetails {
+    render({data}: IDetailsData): any {
 
-        if (planet === undefined) {
+        let vehicle = data as Vehicle;
+
+        if (vehicle === undefined) {
             return <h1>Sorry, but we couldn't parse this unique person</h1>
         }
 
-
-        let createdDate = new Date(planet.created);
-        let editedDate = new Date(planet.edited);
+        let createdDate = new Date(vehicle.created);
+        let editedDate = new Date(vehicle.edited);
         let obj = {
-            Name: planet.name,
-            Rotation_Period: planet.rotation_period,
-            Orbital_period: planet.orbital_period,
-            Diameter: planet.diameter,
-            Climate: planet.climate,
-            Gravity: planet.gravity
+            Name:vehicle.name,
+            Model:vehicle.model,
+            Manufacturer:vehicle.manufacturer,
+            Cost:vehicle.cost_in_credits,
+            Length:vehicle.length,
+            Max_atmosphering_speed:vehicle.max_atmosphering_speed,
+            Crew:vehicle.crew,
+            Passengers:vehicle.passengers,
+            Cargo_capacity:vehicle.cargo_capacity,
+            Consumables:vehicle.consumables,
+            Class:vehicle.vehicle_class
         };
         return (
             <Container className="p-lg-2">
-                    <Header name={planet.name}/>
+                <Header name={vehicle.name}/>
                 <Row>
                     <Col lg="5">
                         <MainInfo name_value={obj}/>
@@ -40,18 +45,18 @@ export class PlanetDetails implements IDetails {
                                 <Col md={{ span: 2 }}>
                                     <Stack gap={1}>
                                         <div className="p-2">Films</div>
-                                        {
-                                            planet.films.map((x, i) =>
-                                                <div key={i} className="p-2 d-flex flex-row-reverse"><Link to={getRelativePath(x)}>Film - {i+1}</Link></div>
-                                            )}
-                                    </Stack>
+                                            {
+                                                vehicle.films.map((x, i) =>
+                                                    <div key={i} className="p-2 d-flex flex-row-reverse"><Link to={getRelativePath(x)}>Film - {i+1}</Link></div>
+                                                )}
+                                        </Stack>
                                 </Col>
                                 <Col md={{ span: 2, offset: 2 }}>
                                     <Stack gap={1}>
-                                        <div className="p-2">Vehicles</div>
+                                        <div className="p-2">Pilots</div>
                                         {
-                                            planet.residents.map((x, i) =>
-                                                <div key={i} className="p-2 d-flex flex-row-reverse"><Link to={getRelativePath(x)}>Resident - {i+1}</Link></div>
+                                            vehicle.pilots.map((x, i) =>
+                                                <div key={i} className="p-2 d-flex flex-row-reverse"><Link to={getRelativePath(x)}>Pilot - {i+1}</Link></div>
                                             )}
                                     </Stack>
                                 </Col>

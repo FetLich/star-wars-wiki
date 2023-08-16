@@ -1,75 +1,76 @@
-import {IDetails, IDetailsData} from "../Common/IDetails";
-import {Person} from "./Person";
 import React from "react";
-import Container from "react-bootstrap/Container";
 import {Col, Row, Stack} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import Container from "react-bootstrap/Container";
 import {getRelativePath} from "../api/UrlFormatter";
+import {IDetails, IDetailsData} from "../Common/IDetails";
+import {Film} from "./Film";
+import {Header} from "../Components/HeaderRow";
 import {MainInfo} from "../Components/MainInfo";
-import {Navigation} from "../Components/Navigation";
 
-export class PersonDetails implements IDetails {
+export class FilmDetails implements IDetails {
     render({data}: IDetailsData): any {
-        let person = data as Person;
 
-        if (person === undefined) {
+        let film = data as Film;
+
+        if (film === undefined) {
             return <h1>Sorry, but we couldn't parse this unique person</h1>
         }
 
-        let createdDate = new Date(person.created);
-        let editedDate = new Date(person.edited);
+        let createdDate = new Date(film.created);
+        let editedDate = new Date(film.edited);
+        let releasedDate = new Date(film.release_date);
         let obj = {
-            Name: person.name,
-            Height: person.height,
-            Mass: person.mass,
-            Hair_Color: person.hair_color,
-            Skin_Color: person.skin_color,
-            Eye_Color: person.eye_color,
+            Title: film.title,
+            Episode: film.episode_id,
+            Director: film.director,
+            Producer: film.producer
         };
         return (
-            <Container className="p-lg-2">
 
-                <Row>
-                    <Col lg="8">
-                        <div className="mt-md-3 p-2">
-                            <h1>{person.name} Bio</h1>
-                        </div>
-                    </Col>
-                    <Col lg="4">
-                       <Navigation/>
-                    </Col>
-                </Row>
+            <Container className="p-lg-2">
+                <Header name={film.title}/>
 
 
                 <Row>
                     <Col lg="5">
                         <MainInfo name_value={obj}/>
+
+                        <div className="mt-md-3 p-2 border bg-light">
+                            <p>
+                                {film.opening_crawl}
+                            </p>
+                        </div>
                     </Col>
                     <Col lg="7">
                         <div className="mt-md-3 p-2 border bg-light">
                             <Row>
-                                <Col md={{span: 2}}>
+                                <Col md={{span: 3}}>
                                     <Stack gap={1}>
-                                        <div className="p-2">Films</div>
+                                        <div className="p-2">Characters</div>
                                         {
-                                            person.films.map((x, i) =>
+                                            film.characters.map((x, i) =>
                                                 <div key={i} className="p-2 d-flex flex-row-reverse"><Link
-                                                    to={getRelativePath(x)}>Film - {i + 1}</Link></div>
+                                                    to={getRelativePath(x)}>Character - {i + 1}</Link></div>
                                             )}
                                     </Stack>
                                 </Col>
-                                <Col md={{span: 2, offset: 2}}>
+                                <Col md={{span: 2, offset: 1}}>
                                     <Stack gap={1}>
                                         <div className="p-2">Vehicles</div>
                                         {
-                                            person.vehicles.map((x, i) =>
+                                            film.vehicles.map((x, i) =>
                                                 <div key={i} className="p-2 d-flex flex-row-reverse"><Link
                                                     to={getRelativePath(x)}>Vehicle - {i + 1}</Link></div>
                                             )}
                                     </Stack>
                                 </Col>
-                                <Col md={{span: 4, offset: 2}}>
+                                <Col md={{span: 5, offset: 1}}>
                                     <Stack gap={1}>
+                                        <Stack direction="horizontal" gap={1}>
+                                            <div className="p-2">Release date:</div>
+                                            <div className="p-2 ms-auto">{releasedDate.toDateString()}</div>
+                                        </Stack>
                                         <Stack direction="horizontal" gap={1}>
                                             <div className="p-2">Created:</div>
                                             <div className="p-2 ms-auto">{createdDate.toDateString()}</div>
@@ -86,7 +87,7 @@ export class PersonDetails implements IDetails {
                                     <Stack gap={1}>
                                         <div className="p-2">Starships</div>
                                         {
-                                            person.starships.map((x, i) =>
+                                            film.starships.map((x, i) =>
                                                 <div key={i} className="p-2 d-flex flex-row-reverse"><Link
                                                     to={getRelativePath(x)}>Starship - {i + 1}</Link></div>
                                             )}
@@ -96,9 +97,19 @@ export class PersonDetails implements IDetails {
                                     <Stack gap={1}>
                                         <div className="p-2">Species</div>
                                         {
-                                            person.species.map((x, i) =>
+                                            film.species.map((x, i) =>
                                                 <div key={i} className="p-2 d-flex flex-row-reverse"><Link
                                                     to={getRelativePath(x)}>Specie - {i + 1}</Link></div>
+                                            )}
+                                    </Stack>
+                                </Col>
+                                <Col md={{span: 2, offset: 2}}>
+                                    <Stack gap={1}>
+                                        <div className="p-2">Planets</div>
+                                        {
+                                            film.planets.map((x, i) =>
+                                                <div key={i} className="p-2 d-flex flex-row-reverse"><Link
+                                                    to={getRelativePath(x)}>Planet - {i + 1}</Link></div>
                                             )}
                                     </Stack>
                                 </Col>
@@ -106,7 +117,9 @@ export class PersonDetails implements IDetails {
                         </div>
                     </Col>
                 </Row>
+
             </Container>
+
         );
     }
 }

@@ -1,12 +1,8 @@
 import React from 'react';
 import {Person} from './Person'
 import {IList, IListData} from "../Common/IList";
-import {getRelativePath} from "../api/UrlFormatter";
 import Table from 'react-bootstrap/Table';
-
-const redirect = (url: string) => {
-    window.location.href = getRelativePath(url);
-}
+import {redirect} from "../Table/Table";
 
 export class PersonList implements IList {
     render({data}: IListData): any {
@@ -14,7 +10,7 @@ export class PersonList implements IList {
         if (persons === undefined || persons.length === 0) {
             return <h1>Sorry, I wasn't able to parse these people</h1>
         }
-        let x = persons[0];
+
         return (
             <Table striped bordered hover>
                 <thead>
@@ -29,9 +25,9 @@ export class PersonList implements IList {
                 </thead>
                 <tbody>
                 {
-                    persons.map((x) =>
+                    persons.map((x, index) =>
 
-                        <tr onClick={() => {
+                        <tr key={index} onClick={() => {
                             redirect(x.url)
                         }}>
                             <td>{x.name}</td>

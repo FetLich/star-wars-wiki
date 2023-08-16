@@ -1,4 +1,6 @@
-export class Person
+import {IRedirectable} from "../Common/IRedirectable";
+
+export class Person implements IRedirectable
 {
     name: string='';
     height: string ='';
