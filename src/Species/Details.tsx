@@ -1,4 +1,4 @@
-import {IDetails, IDetailsData} from "../Common/IDetails";
+import {IDetailsComponent, IDetailsData} from "../Common/IDetailsComponent";
 import {Species} from "./Species";
 import React from "react";
 import Container from "react-bootstrap/Container";
@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import {getRelativePath} from "../api/UrlFormatter";
 import {Header} from "../Components/HeaderRow";
 
-export class SpeciesDetails implements IDetails {
+export class SpeciesDetails implements IDetailsComponent {
     render({data}: IDetailsData): any {
 
         let species = data as Species;

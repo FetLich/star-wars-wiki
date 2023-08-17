@@ -1,4 +1,4 @@
-import {IDetails, IDetailsData} from "../Common/IDetails";
+import {IDetailsComponent, IDetailsData} from "../Common/IDetailsComponent";
 import {Person} from "./Person";
 import React from "react";
 import Container from "react-bootstrap/Container";
@@ -8,7 +8,7 @@ import {getRelativePath} from "../api/UrlFormatter";
 import {MainInfo} from "../Components/MainInfo";
 import {Navigation} from "../Components/Navigation";
 
-export class PersonDetails implements IDetails {
+export class PersonDetails implements IDetailsComponent {
     render({data}: IDetailsData): any {
         let person = data as Person;
 

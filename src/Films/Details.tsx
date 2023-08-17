@@ -3,12 +3,12 @@ import {Col, Row, Stack} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import {getRelativePath} from "../api/UrlFormatter";
-import {IDetails, IDetailsData} from "../Common/IDetails";
+import {IDetailsComponent, IDetailsData} from "../Common/IDetailsComponent";
 import {Film} from "./Film";
 import {Header} from "../Components/HeaderRow";
 import {MainInfo} from "../Components/MainInfo";
 
-export class FilmDetails implements IDetails {
+export class FilmDetails implements IDetailsComponent {
     render({data}: IDetailsData): any {
 
         let film = data as Film;

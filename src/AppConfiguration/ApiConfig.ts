@@ -4,7 +4,7 @@ export interface IParams {
     method: string
 }
 export const ApiConfig : IParams = {
-    baseUrl: "https://swapi.dev/api/",
+    baseUrl: "https://swapi.dev/api",
     headers: {
         "Authorization": ""
     },

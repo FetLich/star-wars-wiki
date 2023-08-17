@@ -1,10 +1,10 @@
 import React from 'react';
 import { Planet } from './Planet'
-import {IList, IListData} from "../Common/IList";
+import {IListComponent, IListData} from "../Common/IListComponent";
 import Table from "react-bootstrap/Table";
 import {redirect} from "../Table/Table";
 
-export class PlanetList implements IList
+export class PlanetList implements IListComponent
 {
     render({data}: IListData): any {
 

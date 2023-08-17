@@ -1,8 +1,8 @@
-import {IList, IListData} from "./IList";
+import {IListComponent, IListData} from "./IListComponent";
 import {Link} from "react-router-dom";
 import React from "react";
 
-export class DefaultList implements IList {
+export class DefaultList implements IListComponent {
     render({data}: IListData): any {
         return (
             <div>

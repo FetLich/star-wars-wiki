@@ -1,14 +1,14 @@
 import React from 'react';
 import {Film} from './Film'
-import {IList, IListData} from "../Common/IList";
+import {IListComponent, IListData} from "../Common/IListComponent";
 import Table from 'react-bootstrap/Table';
 import {redirect} from "../Table/Table";
 
-export class FilmList implements IList {
+export class FilmList implements IListComponent {
     render({data}: IListData): any {
         let films = data as Film[];
         if (films === undefined || films.length === 0) {
-            return <h1>Sorry, I wasn't able to parse these films</h1>
+            return <h1>Sorry, I can't find any film like that</h1>
         }
 let self = this;
         return (

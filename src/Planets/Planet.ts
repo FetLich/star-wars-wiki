@@ -1,6 +1,6 @@
-import {IRedirectable} from "../Common/IRedirectable";
+import {IDetailsResponseData} from "../Common/IDetailsResponseData";
 
-export class Planet implements IRedirectable {
+export class Planet implements IDetailsResponseData {
     name: string = '';
     url: string = '';
     rotation_period: string = '';

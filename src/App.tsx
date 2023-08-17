@@ -1,20 +1,22 @@
 import React from 'react';
+import {Row} from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Table from "./Table/Table";
+import SearchBar from "./Components/SearchBar";
+
 
 function App() {
-  return (
+    return (
+        <Container className="mt-md-3 p-2 bg-dark-subtle">
+            <Row>
+                <h1 className="header d-flex justify-content-center">
+                    Welcome To Star Wars Assignment Task!
+                </h1>
+            </Row>
 
-      <Container className="p-2">
-          <div className="mt-md-3 p-2 bg-dark-subtle">
-              <h1 className="header d-flex justify-content-center">
-                  Welcome To Star Wars Assignment Task!
-              </h1>
-
-              <Table/>
-          </div>
-      </Container>
-  );
+            <Table/>
+        </Container>
+    );
 }
 
 export default App;

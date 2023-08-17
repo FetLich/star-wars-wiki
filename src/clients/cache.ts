@@ -10,7 +10,6 @@ export function getResults(key: string): any|null {
     let resItem = localStorage.getItem(key);
     if(resItem!==undefined && resItem!=null && resItem.length>0)
     {
-        console.log(resItem);
         return JSON.parse(resItem);
     }
     return null;

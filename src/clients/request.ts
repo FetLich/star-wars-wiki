@@ -1,27 +1,49 @@
 import {getAbsolutePath} from "../api/UrlFormatter";
 import {getApi} from "../api/getApi";
-import axios from "axios/index";
 import {getResults, saveResults} from "./cache";
+import {IListResponse, IResponse} from "../Common/IResponse";
 
-export const makeRequest = async (relevantUrl:string, data: any, page: number, tryCache: boolean): Promise<any> =>{
+export const makeRequest = async (filter: string | undefined, data: any, queryParams: {
+    [name: string]: any;
+}, tryCache: boolean): Promise<any> => {
 
-    var requestUrl = getAbsolutePath(relevantUrl, data, page);
-    if(tryCache)
-    {
+    if (filter === undefined) {
+        filter = "";
+    }
+
+    var requestUrl = getAbsolutePath(filter, data, queryParams);
+    if (tryCache) {
         var cachedResult = getResults(requestUrl);
-        if(cachedResult!=null)
-        {
+        if (cachedResult != null) {
             return cachedResult;
         }
 
     }
-    return await getApi(requestUrl).then ( (response) => {
-        if(response.status === 200)
-            console.log(response);
-            saveResults(requestUrl, response);
+    return await getApi(requestUrl).then((response) => {
+        if (response.status === 200) {
+            let updatedResponse = response as IResponse;
+            updatedResponse.filter = filter;
+            saveResults(requestUrl, updatedResponse);
+            return updatedResponse;
+        }
         return response;
-    }).catch((error) =>{
+    }).catch((error) => {
         return error;
     })
+}
+
+export const makeMultiplyRequests = async (filter: string | undefined, data: any, queryParams: {
+    [name: string]: any;
+}, tryCache: boolean): Promise<any> => {
+
+    if (filter === undefined) {
+        filter = "";
+    }
+    var filters = filter.split('|');
+    return await Promise.allSettled(
+        filters.map(async filter => {
+            return await makeRequest(filter, data, queryParams, tryCache);
+        })
+    );
 }
 

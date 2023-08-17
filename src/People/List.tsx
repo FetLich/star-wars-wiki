@@ -1,14 +1,14 @@
 import React from 'react';
 import {Person} from './Person'
-import {IList, IListData} from "../Common/IList";
+import {IListComponent, IListData} from "../Common/IListComponent";
 import Table from 'react-bootstrap/Table';
 import {redirect} from "../Table/Table";
 
-export class PersonList implements IList {
+export class PersonList implements IListComponent {
     render({data}: IListData): any {
         let persons = data as Person[];
         if (persons === undefined || persons.length === 0) {
-            return <h1>Sorry, I wasn't able to parse these people</h1>
+            return <h1>Sorry, I am not sure there are people to show</h1>
         }
 
         return (

@@ -18,8 +18,7 @@ const router = createBrowserRouter([
         path: "details/:data/:id",
         element: <Details/>,
         loader: async ({params}) => {
-            var data = params.data + '/' +params.id;
-            return makeRequest("", data, 0, true)
+             return makeRequest(params.data, params.id, {},true)
 
         }
     }

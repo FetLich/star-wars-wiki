@@ -1,11 +1,11 @@
 import React from 'react';
 import {Species} from './Species'
-import {IList, IListData} from "../Common/IList";
+import {IListComponent, IListData} from "../Common/IListComponent";
 import {getRelativePath} from "../api/UrlFormatter";
 import Table from 'react-bootstrap/Table';
 import {redirect} from "../Table/Table";
 
-export class SpeciesList implements IList {
+export class SpeciesList implements IListComponent {
     render({data}: IListData): any {
         let species = data as Species[];
         if (species === undefined || species.length === 0) {

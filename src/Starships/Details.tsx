@@ -1,4 +1,4 @@
-import {IDetails, IDetailsData} from "../Common/IDetails";
+import {IDetailsComponent, IDetailsData} from "../Common/IDetailsComponent";
 import {Starship} from "./Starship";
 import React from "react";
 import Container from "react-bootstrap/Container";
@@ -8,7 +8,7 @@ import {getRelativePath} from "../api/UrlFormatter";
 import {Header} from "../Components/HeaderRow";
 import {MainInfo} from "../Components/MainInfo";
 
-export class StarshipDetails implements IDetails {
+export class StarshipDetails implements IDetailsComponent {
     render({data}: IDetailsData): any {
 
         let starship = data as Starship;

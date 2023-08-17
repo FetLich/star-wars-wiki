@@ -1,4 +1,4 @@
-import {IDetails, IDetailsData} from "../Common/IDetails";
+import {IDetailsComponent, IDetailsData} from "../Common/IDetailsComponent";
 import {Planet} from "./Planet";
 import React from "react";
 import Container from "react-bootstrap/Container";
@@ -8,7 +8,7 @@ import {getRelativePath} from "../api/UrlFormatter";
 import {Header} from "../Components/HeaderRow";
 import {MainInfo} from "../Components/MainInfo";
 
-export class PlanetDetails implements IDetails {
+export class PlanetDetails implements IDetailsComponent {
     render ({data}: IDetailsData): any {
         let planet =  data as Planet;
 

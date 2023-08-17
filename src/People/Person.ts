@@ -1,6 +1,6 @@
-import {IRedirectable} from "../Common/IRedirectable";
+import {IDetailsResponseData} from "../Common/IDetailsResponseData";
 
-export class Person implements IRedirectable
+export class Person implements IDetailsResponseData
 {
     name: string='';
     height: string ='';

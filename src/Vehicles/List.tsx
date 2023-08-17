@@ -1,12 +1,12 @@
 import React from 'react';
 import {Vehicle} from './Vehicle'
-import {IList, IListData} from "../Common/IList";
+import {IListComponent, IListData} from "../Common/IListComponent";
 import {getRelativePath} from "../api/UrlFormatter";
 import Table from 'react-bootstrap/Table';
 import {redirect} from "../Table/Table";
 
 
-export class VehicleList implements IList {
+export class VehicleList implements IListComponent {
     render({data}: IListData): any {
         let vehicles = data as Vehicle[];
         if (vehicles === undefined || vehicles.length === 0) {

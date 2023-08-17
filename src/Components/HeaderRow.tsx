@@ -1,5 +1,4 @@
-import {Col, Row, Stack} from "react-bootstrap";
-import {Link, useNavigate} from "react-router-dom";
+import {Col, Row} from "react-bootstrap";
 import React from "react";
 import {Navigation} from "./Navigation";
 export interface IHeaderData {
@@ -7,7 +6,6 @@ export interface IHeaderData {
 }
 export function Header (data: IHeaderData)
 {
-    const navigate = useNavigate();
     return <Row>
         <Col lg="8">
             <div className="mt-md-3 p-2">

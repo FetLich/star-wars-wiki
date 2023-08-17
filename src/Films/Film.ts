@@ -1,6 +1,6 @@
-import {IRedirectable} from "../Common/IRedirectable";
+import {IDetailsResponseData} from "../Common/IDetailsResponseData";
 
-export class Film implements IRedirectable
+export class Film implements IDetailsResponseData
 {
     title: string='';
     url: string=';'

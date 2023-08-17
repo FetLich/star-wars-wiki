@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
 import React from "react";
-import {IDetails, IDetailsData} from "./IDetails";
+import {IDetailsComponent, IDetailsData} from "./IDetailsComponent";
 
-export class DefaultDetails implements IDetails {
+export class DefaultDetails implements IDetailsComponent {
     render({data}: IDetailsData): any {
         return (
             <div>
