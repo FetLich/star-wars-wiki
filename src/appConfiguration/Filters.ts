@@ -27,7 +27,6 @@ export class Filter
     listImplementation: IListComponent= new DefaultList();
     detailsImplementation: IDetailsComponent = new DefaultDetails();
     filterClient: IFilterClient = new RegularFilterClient();
-    page: number = 0;
 
     constructor(initializer?: any) {
         if (!initializer) return;
@@ -35,7 +34,6 @@ export class Filter
         if (initializer.filterValue) this.filterValue = initializer.filterValue;
         else
             this.filterValue = this.filterName;
-        if (initializer.page) this.page = initializer.page;
         if (initializer.filterIsActive!==undefined) this.filterIsActive = initializer.filterIsActive;
         if (initializer.searchIsActive!==undefined) this.searchIsActive = initializer.searchIsActive;
         if (initializer.filterClient) this.filterClient = initializer.filterClient;
@@ -58,7 +56,6 @@ export const FILTERS =[
     }),
     new Filter({
         filterName: "vehicles",
-        page: 1,
         listImplementation: new VehicleList(),
         detailsImplementation: new VehicleDetails()
     }),

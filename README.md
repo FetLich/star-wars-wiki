@@ -14,11 +14,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -39,8 +34,44 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+# How to extend functionality
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## To add a new filter (tab) 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Add a new Filter declaration to the FILTERS configuration (/AppConfiguration/Filters)
+### filter name (required)
+Tab name
+### filter value (required)
+api call filter
+### filterIsActive
+if set to false filter tab won't be displayed ao the main screen
+### searchIsActive
+If set to false search button is disabled on the tab
+### listImplementation
+should implement IListComponent interface and dictates how the table is rendered for this filter
+### detailsImplementation
+should implement IDetailsComponent interface and dictates how the details page looks like for a specific record 
+### filterClient
+specifies a request client if different from the default one
+
+## To change presentation
+
+For organization purposes filter presentation files are stored in the following structure: 
+presentation/{FilterName}/{files}
+
+In case you desire to change specific filter presentation - just locate an appropriate item following the above structure
+
+## Api changes
+In case api base url or request path are changed, please make adjustments to appConfiguration/ApiConfig and UrlFormatter 
+
+## Common components
+
+Be aware: common components, e.g. search box, pagination, navigation are used across the pages
+You can find them under components folder
+
+## Warning! 
+In some places specific types are used for structure and common sense.
+Please proceed carefully if decide to pass around an untyped wild objects
+Note: feel free to change names as you desire, except for fields in filter types,
+e.g (presentation/{filterName}/{LooksLikeFilterButNotExactly} files) - 
+these are reserved for correct json parsing  
