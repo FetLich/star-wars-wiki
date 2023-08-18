@@ -1,7 +1,7 @@
 import {getAbsolutePath} from "../api/UrlFormatter";
 import {getApi} from "../api/getApi";
 import {getResults, saveResults} from "./cache";
-import {IListResponse, IResponse} from "../Common/IResponse";
+import {IResponse} from "../interfaces/IResponse";
 
 export const makeRequest = async (filter: string | undefined, data: any, queryParams: {
     [name: string]: any;

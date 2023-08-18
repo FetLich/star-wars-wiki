@@ -1,8 +1,12 @@
-import {ApiConfig} from "../AppConfiguration/ApiConfig";
+import {ApiConfig} from "../appConfiguration/ApiConfig";
 
 
-export function getRelativePath(originalPath: string): string{
-    return '/details'+ originalPath.replace(ApiConfig.baseUrl, '');
+export function getRelativeInnerPath(originalPath: string): string{
+    return '/details'+ stripPath(originalPath);
+}
+
+export function stripPath(originalPath: string): string{
+    return originalPath.replace(ApiConfig.baseUrl, '');
 }
 
 export function getAbsolutePath(relevantUrl: string, data:string, queryParams: { [name: string] : any; } ):string

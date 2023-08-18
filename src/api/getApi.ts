@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {ApiConfig} from "../AppConfiguration/ApiConfig";
+import {ApiConfig} from "../appConfiguration/ApiConfig";
 import {getAbsolutePath} from "./UrlFormatter";
 
 

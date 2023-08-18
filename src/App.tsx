@@ -1,8 +1,7 @@
 import React from 'react';
 import {Row} from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
-import Table from "./Table/Table";
-import SearchBar from "./Components/SearchBar";
+import Table from "./mainLayouts/Table";
 
 
 function App() {

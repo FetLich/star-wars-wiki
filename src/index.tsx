@@ -5,7 +5,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import {makeRequest} from "./clients/request";
 import App from './App';
-import {Details} from "./Table/Details";
+import {Details} from "./mainLayouts/Details";
 
 
 const router = createBrowserRouter([
