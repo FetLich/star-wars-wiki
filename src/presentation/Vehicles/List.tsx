@@ -1,8 +1,7 @@
 import React from 'react';
+import Table from 'react-bootstrap/Table';
 import {Vehicle} from './Vehicle'
 import {IListComponent, IListData} from "../../interfaces/IListComponent";
-import {getRelativeInnerPath} from "../../api/UrlFormatter";
-import Table from 'react-bootstrap/Table';
 import {redirect} from "../../mainLayouts/Table";
 
 

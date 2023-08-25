@@ -1,5 +1,4 @@
-import {Col, Row, Stack} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Stack} from "react-bootstrap";
 import React from "react";
 
 export interface IMainInfoData {

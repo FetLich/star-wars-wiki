@@ -10,7 +10,7 @@ export class FilmList implements IListComponent {
         if (films === undefined || films.length === 0) {
             return <h1>Sorry, I can't find any film like that</h1>
         }
-let self = this;
+
         return (
             <Table striped bordered hover>
                 <thead>

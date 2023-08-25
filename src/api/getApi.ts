@@ -1,7 +1,5 @@
 import axios from 'axios'
 import {ApiConfig} from "../appConfiguration/ApiConfig";
-import {getAbsolutePath} from "./UrlFormatter";
-
 
 export const getApi = async (url: string): Promise<any> =>{
 
